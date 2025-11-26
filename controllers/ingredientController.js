@@ -129,7 +129,7 @@ exports.recognizeIngredients = async (req, res, next) => {
     return res.status(400).json({ msg: "No image file uploaded." });
   }
 
-  const imagePath = path.join(__dirname, "..", req.file.path);
+  const imagePath = req.file.path;
 
   try {
     const rawRecognizedList = await aiService.analyzeImageForIngredients(
@@ -455,4 +455,5 @@ exports.validateIngredients = async (req, res, next) => {
     console.error("Error in validateIngredients:", err);
     next(err);
   }
+
 };
